@@ -62,18 +62,17 @@ shinyServer(function(input, output) {
             }
             else{
                 data_amount <- (filter(data3,year(date_start)>=input$annee_debut,month(date_start)>=which(list==input$choix_du_mois),goal_raised==TRUE))
-                montant_moyen <- rep(0,2019-2010+1)
-                x<- seq(0,1,length.out=35)
-                for(i in 2010:2019){
-                    
+                a <- as.numeric(input$annee_debut)
+                montant_moyen <- rep(0,2019-a+1)
+                for(i in a:2019){
                     temp <- which (year(data_amount$date_start)== i)
-                    montant_moyen[i+1-2010] <- mean(data_amount$amount_raised[temp])
+                    montant_moyen[i+1-a] <- mean(data_amount$amount_raised[temp])
                 }
-                annee <- seq(input$annee_debut,2019)
+                annee <- seq(a,2019)
                 montant_moyen <- cbind(annee,montant_moyen)
                 montant_moyen <- as.data.frame(montant_moyen)
-                ggplot(montant_moyen,aes(x=annee,y=montant_moyen)) +  geom_line(aes(group=1)) +
-                    geom_point(shape=21, color="black", fill="#69b3a2", size=6)
+                montant_moyen <- na.omit(montant_moyen)
+                ggplot(montant_moyen,aes(x =annee,y=montant_moyen)) + geom_bar(stat="identity")
         
             }
             
