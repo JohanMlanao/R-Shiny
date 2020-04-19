@@ -124,7 +124,7 @@ Voici des exemples de graphiques que l’on pourra retrouver sur
 l’application:
 
 ``` r
-data_temp <- filter(data3, year(date_start) >= 2013,month(date_start)==1)
+data_temp <- filter(data3, year(date_start) >= 2013,month(date_start)==1,category=="Mode & Design")
 
 value <- as.data.frame(table(year(data_temp$date_start)))
             
@@ -135,7 +135,7 @@ value <- as.data.frame(table(year(data_temp$date_start)))
 ![](Projet_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 ``` r
- data_finance <- (filter(data3,year(date_start)>=2010,month(date_start)>=7,goal_raised==TRUE))
+ data_finance <- (filter(data3,year(date_start)>=2010,month(date_start)>=7,goal_raised==TRUE,category=="Musique"))
                 value <- (filter(data3,year(date_start)>=2010,month(date_start)>=7))
                 data_finance <- as.data.frame(table(year(data_finance$date_start)))
                 value <- as.data.frame(table(year(value$date_start)))
@@ -149,7 +149,7 @@ value <- as.data.frame(table(year(data_temp$date_start)))
 ![](Projet_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ``` r
-data_amount <- (filter(data3,year(date_start)>=2015,month(date_start)>=10,goal_raised==TRUE))
+data_amount <- (filter(data3,year(date_start)>=2015,month(date_start)>=10,goal_raised==TRUE,category=="Sports"))
                 montant_moyen <- rep(0,2019-2015+1)
                 x<- seq(0,1,length.out=35)
                 for(i in 2010:2019){
