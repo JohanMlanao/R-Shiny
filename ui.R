@@ -7,7 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
-setwd("~/Travail/M1/S8/Projet d'expertise/Projet")
+# setwd("~/Travail/M1/S8/Projet d'expertise/Projet")
 
 library(shiny)
 
@@ -24,8 +24,8 @@ shinyUI(fluidPage(
                         c(2010:2019)),
             selectInput("choix_du_mois",
                         "Choix du mois",
-                        c("Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre"))),
-
+                        c("Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre")),
+            selectInput("Categorie","Choix de la categorie",c("Art & Photo"= 1,"Artisanat & Cuisine " = 2,"Autres projets" = 3,"BD" = 4,"Edition & Journal." = 5,"Enfance & Educ." = 6,"Film et video" = 7,"Jeux" = 8,"Mode & Design" = 9,"Musique" = 10,"Patrimoine" = 11,"Sante & Bien-etre" = 12,"Solidaire & Citoyen" = 13,"Spectacle vivant" = 14,"Sports" = 15,"Technologie" = 16))),
         # Show a plot of the generated distribution
         mainPanel(
             plotOutput("distPlot")

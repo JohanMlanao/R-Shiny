@@ -36,11 +36,14 @@ shinyServer(function(input, output) {
         output$distPlot <- renderPlot({
             list=c("Janvier","Fevrier","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Decembre")
             
+            categorie=as.numeric(c("Art & Photo","Artisanat & Cuisine ","Autres projets","BD","Edition & Journal.","Enfance & Educ.","Film et video","Jeux","Mode & Design","Musique","Patrimoine","Sante & Bien-etre","Solidaire & Citoyen","Spectacle vivant","Sports","Technologie"))
+            
             if ( input$Choix_du_graphe== "Evolution_des_campagnes"){
+         
             
             
             data_temp <- filter(data3, year(date_start) >= input$annee_debut,
-                                month(date_start)==which(list==input$choix_du_mois))
+                                month(date_start)==which(list==input$choix_du_mois),as.numeric(category)==input$Categorie)
             value <- as.data.frame(table(year(data_temp$date_start)))
             
             ggplot(value,aes(x=Var1,y=Freq)) +  geom_line(aes(group=1)) +
@@ -48,7 +51,7 @@ shinyServer(function(input, output) {
             }
             else if(input$Choix_du_graphe== "Taux_de_campagne_financees"){
                 
-                data_finance <- (filter(data3,year(date_start)>=input$annee_debut,month(date_start)>=which(list==input$choix_du_mois),goal_raised==TRUE))
+                data_finance <- filter(data3,year(date_start)>=input$annee_debut,month(date_start)>=which(list==input$choix_du_mois),goal_raised==TRUE,as.numeric(category)==input$Categorie)
                 value <- (filter(data3,year(date_start)>=input$annee_debut,month(date_start)>=which(list==input$choix_du_mois)))
                 data_finance <- as.data.frame(table(year(data_finance$date_start)))
                 value <- as.data.frame(table(year(value$date_start)))
@@ -61,7 +64,7 @@ shinyServer(function(input, output) {
                     geom_point(shape=21, color="black", fill="#69b3a2", size=6)
             }
             else{
-                data_amount <- (filter(data3,year(date_start)>=input$annee_debut,month(date_start)>=which(list==input$choix_du_mois),goal_raised==TRUE))
+                data_amount <- filter(data3,year(date_start)>=input$annee_debut,month(date_start)>=which(list==input$choix_du_mois),goal_raised==TRUE,as.numeric(category)==input$Categorie)
                 a <- as.numeric(input$annee_debut)
                 montant_moyen <- rep(0,2019-a+1)
                 for(i in a:2019){
