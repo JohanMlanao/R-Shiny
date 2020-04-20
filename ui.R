@@ -18,7 +18,7 @@ shinyUI(fluidPage(
     titlePanel("Informations sur les campagnes"),
 
         sidebarPanel(
-            selectInput("Choix_du_graphe","Choix du graphe",c("Evolution_des_campagnes","Taux_de_campagne_financees","Montant_moyen_des_campagnes_financees")),
+            selectInput("Choix_du_graphe","Choix du graphe",c("Evolution des campagnes" = 1,"Taux de campagne financees" = 2,"Montant moyen des campagnes financees" = 3)),
             selectInput("annee_debut",
                         "Annee de depart",
                         c(2010:2019)),

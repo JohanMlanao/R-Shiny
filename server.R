@@ -38,7 +38,7 @@ shinyServer(function(input, output) {
             
             categorie=as.numeric(c("Art & Photo","Artisanat & Cuisine ","Autres projets","BD","Edition & Journal.","Enfance & Educ.","Film et video","Jeux","Mode & Design","Musique","Patrimoine","Sante & Bien-etre","Solidaire & Citoyen","Spectacle vivant","Sports","Technologie"))
             
-            if ( input$Choix_du_graphe== "Evolution_des_campagnes"){
+            if ( input$Choix_du_graphe== 1){
          
             
             
@@ -49,7 +49,7 @@ shinyServer(function(input, output) {
             ggplot(value,aes(x=Var1,y=Freq)) +  geom_line(aes(group=1)) +
                 geom_point(shape=21, color="black", fill="#69b3a2", size=6) 
             }
-            else if(input$Choix_du_graphe== "Taux_de_campagne_financees"){
+            else if(input$Choix_du_graphe== 2){
                 
                 data_finance <- filter(data3,year(date_start)>=input$annee_debut,month(date_start)>=which(list==input$choix_du_mois),goal_raised==TRUE,as.numeric(category)==input$Categorie)
                 value <- (filter(data3,year(date_start)>=input$annee_debut,month(date_start)>=which(list==input$choix_du_mois)))
